@@ -1,0 +1,16 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	height: 100%;
+	/* max-height: 100%; */
+	/* overflow: hidden; */
+}
+
+button,
+input {
+	outline: none;
+}
