@@ -18,6 +18,18 @@
 		"_lte",
 		"_in",
 		"_nin",
+		"_like",
+		"_nlike",
+		"_ilike",
+		"_nilike",
+		"_similar",
+		"_nsimilar",
+		"_regex",
+		"_iregex",
+		"_nregex",
+		"_niregex",
+		"_is_null",
+		"_cast",
 	];
 
 	export function clear() {
