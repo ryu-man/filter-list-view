@@ -58,7 +58,7 @@
 			aria-expanded="true"
 			aria-haspopup="true"
 			on:click={(e) => {
-				$show = true;
+				$show = !$show;
 			}}
 		>
 			<span>

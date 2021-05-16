@@ -4,33 +4,15 @@
 	import DropdownItem from "./DropdownItem.svelte";
 
 	export let selectedItem = "";
+	export let whereArgs;
 
 	let dropdown;
 
 	const dispatch = createEventDispatcher();
 
-	const operators = [
-		"_eq",
-		"_neq",
-		"_gt",
-		"_lt",
-		"_gte",
-		"_lte",
-		"_in",
-		"_nin",
-		"_like",
-		"_nlike",
-		"_ilike",
-		"_nilike",
-		"_similar",
-		"_nsimilar",
-		"_regex",
-		"_iregex",
-		"_nregex",
-		"_niregex",
-		"_is_null",
-		"_cast",
-	];
+	console.log(whereArgs)
+
+	$: operators = Object.keys(whereArgs);
 
 	export function clear() {
 		dropdown.clear();

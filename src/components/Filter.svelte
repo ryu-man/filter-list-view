@@ -5,7 +5,9 @@
 	export let name = "";
 	export let placeholder = "";
 	export let type = "String";
-
+	export let whereArgs;
+	// whereArgs.getFields().
+	// console.log();
 	let value = "";
 	let op = "";
 
@@ -37,6 +39,8 @@
 		dispatch("block", block);
 	}
 
+	$:console.log(value)
+
 	export function clear() {
 		value = "";
 		operatorsDropdown?.clear();
@@ -47,6 +51,7 @@
 	<td class="py-1">{name}</td>
 	<td class="py-1 px-1">
 		<OperatorsDropdown
+			{whereArgs}
 			bind:this={operatorsDropdown}
 			on:change={({ detail }) => {
 				op = detail;

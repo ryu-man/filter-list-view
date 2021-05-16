@@ -1,6 +1,10 @@
 <script>
 	import { navigate } from "svelte-routing";
+	import { GraphQLSchema } from "graphql";
 
+	/**
+	 * @type {GraphQLSchema}
+	 */
 	export let schema;
 
 	let contentTypes = [];
@@ -11,6 +15,8 @@
 				!value.type?.ofType?._fields?.aggregate && value?.args?.length > 1
 		)
 		.map(([key]) => key);
+	console.log(Object.values(schema.getTypeMap()));
+	// $: contentTypes = schema.
 </script>
 
 <div class="p-2">

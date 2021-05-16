@@ -11,7 +11,12 @@
 		body: JSON.stringify({
 			query: getIntrospectionQuery(),
 		}),
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			// console.log(res.data);
+			return res;
+		});
 </script>
 
 {#await promise then schemaJSON}
