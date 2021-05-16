@@ -6,15 +6,12 @@
 	import { onDestroy } from "svelte";
 	import { GraphQLSchema } from "graphql";
 
-	// temp1.filter(o=> o.name.includes("_comparison_exp"))
-	// [0].inputFields
 	export let entity = "";
 
 	/**
 	 * @type {GraphQLSchema}
 	 */
 	export let schema;
-	// _queryType._fields.post_type_1.args[4].type._fields.content.type._fields
 	console.log(schema.getQueryType().getFields()[entity].args[4]);
 	let whereArgs = schema
 		.getQueryType()
@@ -45,11 +42,9 @@
 		console.log(res);
 	});
 
-	// $: fields = Object.entries(schema.getTypeMap()[entity]?._fields ?? {});
 
 	onDestroy(() => {
 		unsubscribeDataStore();
-		// unsubscribeIntrospectionStore();
 	});
 
 	let filters = {};

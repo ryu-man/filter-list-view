@@ -11,12 +11,11 @@
 
 	$: contentTypes = Object.entries(schema?.getQueryType?.()?.getFields?.())
 		.filter(
-			([key, value]) =>
+			([_, value]) =>
 				!value.type?.ofType?._fields?.aggregate && value?.args?.length > 1
 		)
 		.map(([key]) => key);
 	console.log(Object.values(schema.getTypeMap()));
-	// $: contentTypes = schema.
 </script>
 
 <div class="p-2">

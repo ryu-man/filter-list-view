@@ -6,8 +6,7 @@
 	export let placeholder = "";
 	export let type = "String";
 	export let whereArgs;
-	// whereArgs.getFields().
-	// console.log();
+
 	let value = "";
 	let op = "";
 
