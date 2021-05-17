@@ -13,11 +13,29 @@
 	let block = {};
 	let operatorsDropdown;
 
+	console.log(type);
+
 	let TYPES = {
 		String: "text",
 		Int: "number",
 		date: "date",
 		timestamptz: "datetime-local",
+	};
+
+	const typeMapper = (type) => {
+		switch (type) {
+			case "String":
+				return "text";
+			case "Int":
+				return "number";
+			case "date":
+				return "date";
+			case "timestamptz":
+				return "datetime-local";
+
+			default:
+				return "text";
+		}
 	};
 
 	const dispatch = createEventDispatcher();
@@ -38,7 +56,7 @@
 		dispatch("block", block);
 	}
 
-	$:console.log(value)
+	$: console.log(value);
 
 	export function clear() {
 		value = "";
@@ -60,7 +78,7 @@
 	<td class="py-1">
 		<input
 			class="border-2 border-gray-200 rounded p-1 w-full"
-			type={TYPES[type]}
+			type={typeMapper(type)}
 			{placeholder}
 			{value}
 			on:change={(e) => {

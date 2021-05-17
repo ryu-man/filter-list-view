@@ -3,16 +3,19 @@
 
 	export let data = [];
 	export let fields = [];
+
+	console.log(data);
 </script>
 
 <div>
 	<table class="w-full text-left">
 		<thead>
 			<tr>
-				{#each fields as [field, { type: { ofType: { name } } }]}
+				{#each fields as [field, { type }]}
 					<th
 						class="py-2 px-3 border-b-2 border-gray-700"
-						class:text-right={name === "Int"}>{field}</th
+						class:text-right={(type?.ofType?.name ?? type?.name) === "Int"}
+						>{field}</th
 					>
 				{/each}
 			</tr>
@@ -20,14 +23,14 @@
 		<tbody>
 			{#each data as item}
 				<tr>
-					{#each fields as [field, { type: { ofType: { name } } }]}
+					{#each fields as [field, { type }]}
 						<td
 							class="py-4 px-3 border-b-2 border-gray-200"
-							class:text-right={name === "Int"}
+							class:text-right={(type?.name ?? type?.ofType?.name) === "Int"}
 						>
-							{#if name === "timestamptz"}
+							{#if (type?.name ?? type?.ofType?.name) === "timestamptz"}
 								{format(new Date(item[field]), "MM/dd/yyyy hh:mm ss")}
-							{:else if name === "date"}
+							{:else if (type?.name ?? type?.ofType?.name) === "date"}
 								{format(
 									parse(item[field], "yyyy-MM-dd", new Date()),
 									"MM/dd/yyyy"

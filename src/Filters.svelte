@@ -12,7 +12,8 @@
 	 * @type {GraphQLSchema}
 	 */
 	export let schema;
-	console.log(schema.getQueryType().getFields()[entity].args[4]);
+	// console.log(schema.getQueryType().getFields()[entity].args[4]);
+	console.log(schema);
 	let whereArgs = schema
 		.getQueryType()
 		.getFields()
@@ -25,7 +26,7 @@
 					[entity].type.ofType.ofType.ofType.getFields() ?? {}
 		  )
 		: [];
-
+	console.log("fields", fields);
 	let where = {};
 	let data = [];
 	const dataQuery = operationStore(
@@ -41,7 +42,6 @@
 		data = res?.data?.[entity] ?? [];
 		console.log(res);
 	});
-
 
 	onDestroy(() => {
 		unsubscribeDataStore();
@@ -68,11 +68,11 @@
 
 			<tbody>
 				{#if schema}
-					{#each fields as [field, { type: { ofType: { name } } }]}
+					{#each fields as [field, { type }]}
 						<Filter
 							bind:this={filters[field]}
 							name={field}
-							type={name}
+							type={type?.name ?? type?.ofType?.name}
 							whereArgs={whereArgs[field].type.getFields()}
 							placeholder=""
 							on:block={({ detail }) => {
